@@ -1,13 +1,14 @@
-import { SignUpButton } from '@clerk/nextjs'
-import React from 'react'
+import { SignOutButton, SignUpButton, useUser } from "@clerk/nextjs";
 
+function Index() {
+  const user = useUser();
 
-function index() {
   return (
     <div>
-      <SignUpButton path="/sign-up" routing="path" signInUrl="/sign-in" />
+      {!user.isSignedIn && <SignUpButton />}
+      {user.isSignedIn && <SignOutButton />}
     </div>
-  )
+  );
 }
 
-export default index
+export default Index;
